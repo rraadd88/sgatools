@@ -1,7 +1,0 @@
-sgatools.deployed.host=http://localhost:9000
-
-sgatools.base.path=/home/matej/dev/ccbr/git/sgatools
-
-# We require GOOGLE account for sending emails!
-email.login.username=
-email.login.password=
