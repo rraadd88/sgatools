@@ -241,12 +241,13 @@ fileNameMetadata <- function(file.name){
 normalizeSGA <- function(plate.data, 
                          replicates=4, 
                          linkage.cutoff=200,
-                         keep.large=FALSE,
+                         keep.large=FALSE, #?
                          overall.plate.median=510, 
                          max.colony.size=1.5*overall.plate.median, 
                          intermediate.data=F,
-                         linkage.file='',
-                         linkage.genes=character(0)){
+                         linkage.file='', #?
+                         linkage.genes=character(0) #?
+                        ){
   
   loginfo('Normalizing plate: replicates = %d, overall.plate.median = %d, max.colony.size = %d', 
           replicates, overall.plate.median, max.colony.size)
@@ -254,20 +255,26 @@ normalizeSGA <- function(plate.data,
   num.rows = attr(plate.data, 'num.rows')
   num.cols = attr(plate.data, 'num.cols')
  
-  # Replciates regardless of array (unique spots) - not same as array name
+  # Replicates regardless of array (unique spots) - not same as array name
+  loginfo("Assigning group ids?")
   rdbl = ceiling(plate.data$row/sqrt(replicates))
   cdbl = ceiling(plate.data$col/sqrt(replicates))
-  plate.data$spots = ((cdbl - 1)* (num.rows/2)) + rdbl
+    
+  plate.data$spots = ((cdbl - 1)* (num.rows/2)) + rdbl 
   
   # Ignored rows (none to begin with)
-  ignore.ind = rep(FALSE, nrow(plate.data))
-  names(ignore.ind) = NA
+  loginfo("Preprocessing2")
+  # ignore.ind = rep(FALSE, nrow(plate.data))
+  # names(ignore.ind) = NA
+  ignore.ind <- data.frame(logicalValue = FALSE, row.names = NA)
   
   ########## (F1) Linkage effect filter ##########
+  loginfo("(F1) Linkage effect filter")
   linkage.ign = linkageFilter(plate.data, linkage.cutoff, linkage.file, linkage.genes)
   ignore.ind = mergeLogicalNames(linkage.ign, ignore.ind)
   
   ########## (N1) Plate normalization ##########
+  loginfo("(N1) Plate normalization")
   plate.data$pnorm = plateNormalization(plate.data, 'colonysize', overall.plate.median)
 
   ########## (F2) Big replicates filter ##########
