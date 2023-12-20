@@ -264,9 +264,9 @@ normalizeSGA <- function(plate.data,
   
   # Ignored rows (none to begin with)
   loginfo("Preprocessing2")
-  # ignore.ind = rep(FALSE, nrow(plate.data))
-  # names(ignore.ind) = NA
-  ignore.ind <- data.frame(logicalValue = FALSE, row.names = NA)
+  ignore.ind = rep(FALSE, nrow(plate.data))
+  names(ignore.ind) = NA
+  # ignore.ind <- data.frame(logicalValue = FALSE, row.names = NA)
   
   ########## (F1) Linkage effect filter ##########
   loginfo("(F1) Linkage effect filter")
