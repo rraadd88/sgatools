@@ -248,7 +248,10 @@ normalizeSGA <- function(plate.data,
                          linkage.file='', #?
                          linkage.genes=character(0) #?
                         ){
-  
+  attr(plate.data, 'num.rows')  =  max(plate.data$row)
+  attr(plate.data, 'num.cols')  =  max(plate.data$col)
+  plate.data$"colonysize" =  plate.data$"size"
+    
   loginfo('Normalizing plate: replicates = %d, overall.plate.median = %d, max.colony.size = %d', 
           replicates, overall.plate.median, max.colony.size)
   
