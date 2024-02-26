@@ -324,6 +324,7 @@ normalizeSGA <- function(plate.data,
     names(v) = 'status'
     kvpMapAsString(v)
   })
+  plate.data$kvp = ""
   plate.data$kvp[ign] = status.kvp
   
   # Make scale of normalized sizes 0-1
