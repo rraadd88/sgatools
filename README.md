@@ -1,15 +1,62 @@
 # `SGATools`
 
 ## Usage
+```
+$ python run.py cli -h
+usage: run.py cli [-h] [-r REPLICATES] [--linkage-cutoff] [--keep-large] [-o OVERALL_PLATE_MEDIAN] [-m MAX_COLONY_SIZE] [-i] [--linkage-file LINKAGE_FILE] [--linkage-genes LINKAGE_GENES]
+                  [-w WD_PATH] [-t THREADS] [--kernel-name KERNEL_NAME] [-v VERBOSE] [-e EXT] [-f] [-d] [-s SKIP]
+                  input-paths output-dir-path
 
-### Input folder
+sgatools command-line (CLI) 
+
+Examples:
+    # cd sgatools
+    run.py cli "input-paths" "output-dir-path"
+
+positional arguments:
+  input-paths           -
+  output-dir-path       -
+
+options:
+  -h, --help            show this help message and exit
+  -r REPLICATES, --replicates REPLICATES
+                        4
+  --linkage-cutoff      False
+  --keep-large          False
+  -o OVERALL_PLATE_MEDIAN, --overall-plate-median OVERALL_PLATE_MEDIAN
+                        510
+  -m MAX_COLONY_SIZE, --max-colony-size MAX_COLONY_SIZE
+                        -
+  -i, --intermediate-data
+                        False
+  --linkage-file LINKAGE_FILE
+                        -
+  --linkage-genes LINKAGE_GENES
+                        -
+  -w WD_PATH, --wd-path WD_PATH
+                        -
+  -t THREADS, --threads THREADS
+                        1
+  --kernel-name KERNEL_NAME
+                        'sgatools'
+  -v VERBOSE, --verbose VERBOSE
+                        'CRITICAL'
+  -e EXT, --ext EXT     'tsv'
+  -f, --force           False
+  -d, --dbug            False
+  -s SKIP, --skip SKIP  -
+```
+
+## Data
+
+### Output
 
 Your normalized and scored data folder will contain:
 a) For each input image, one dat file. 
 b) One combined data file: this file combines all files from a) and averages values (colony sizes, scores, etc..) of replicate arrays 
 c) Scores only data file: this file contains only data rows with scores and has a much simpler format compared to that described below. There are 6 tab-delimited columns: query, array, score, standard deviation, p-value
 
-### Input file
+#### Table
 
 Each file in your directory will has a 9 columns tab-delimited format:
 
