@@ -1,6 +1,55 @@
 # `SGATools`
 
+## Installation
+
+```
+mamba env create environment.yml
+mamba activate sgatools
+```
+
+Requirements in R:
+```
+mamba activate sgatools
+R
+install.packages("BiocManager")
+library(BiocManager)
+install(c("logger","logging","bootstrap"))
+```
+
 ## Usage
+
+### As a function in R
+
+```
+source("rscripts/SGAtools.R")
+df = normalizeSGA(
+    read.table(input_path, sep = "\t", header = TRUE),
+    # replicates=,
+    # linkage.cutoff=,
+    # keep.large=,
+    # overall.plate.median=,
+    # max.colony.size=,
+    # intermediate.data=,
+    # linkage.file=, #todo
+    # linkage.genes=,
+    )
+```
+
+### As a command-line script
+
+Requirements
+```
+python -m ipykernel install --user --name sgatools
+```
+
+#### Single file processing
+
+```
+papermill sgatools_test.ipynb output.ipynb --language R --kernel sgatools -p input_path examples/inputs/image_example1.dat -p output_path output.tsv
+```
+
+#### Batch-processing, with automated report generation
+
 ```
 $ python run.py cli -h
 usage: run.py cli [-h] [-r REPLICATES] [--linkage-cutoff] [--keep-large] [-o OVERALL_PLATE_MEDIAN] [-m MAX_COLONY_SIZE] [-i] [--linkage-file LINKAGE_FILE] [--linkage-genes LINKAGE_GENES]

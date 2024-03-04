@@ -101,6 +101,7 @@ def cli(
         out_paths=True,
         fast=threads!=1,
         fast_workers=threads,
+        language='R',
         **kws,
     )
 
